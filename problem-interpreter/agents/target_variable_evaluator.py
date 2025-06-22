@@ -4,7 +4,7 @@ parser = PydanticOutputParser(pydantic_object=TargetVariableResponseSchema)
 
 def get_target_variable_and_metrics(user_prompt, metadata):
     key = f"target_metrics::{user_prompt}::{str(metadata)}"
-
+    print(f"Retrieving target variable and metrics for: {user_prompt} with metadata: {metadata}")
     prompt_template_str = """
     Given the user requirement: "{input}" and dataset metadata: {metadata},
     identify the target variable and appropriate evaluation metrics.
@@ -28,11 +28,12 @@ def get_target_variable_and_metrics(user_prompt, metadata):
     formatted_prompt = prompt.format(input=user_prompt, metadata=metadata)
     result = retry_parser.parse_with_prompt(raw_output, formatted_prompt)
 
-    message = store_data(DataInput(text=f"target_metrics::{user_prompt} => {result}", metadata={"source": "test"}))
-    if message:
-        print(f"Stored result: {message}")
-    else:
-        print("Failed to store the result.")
+
+    # message = store_data(DataInput(text=f"target_metrics::{user_prompt} => {result}", metadata={"source": "test"}))
+    # if message:
+    #     print(f"Stored result: {message}")
+    # else:
+    #     print("Failed to store the result.")
     return result
 
 if __name__ == "__main__":

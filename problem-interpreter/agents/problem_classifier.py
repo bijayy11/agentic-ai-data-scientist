@@ -7,7 +7,7 @@ def classify_problem_type(user_prompt):
     # cached = search_similar_prompt(f"problem_type::{user_prompt}")
     # if cached:
     #     return cached.split("=>")[1].strip()
-
+    print(f"Classifying problem type for user prompt: {user_prompt}")
     prompt_template_str = """
     You are an expert in Machine Learning tasked with classifying the problem described below.
 
@@ -35,11 +35,11 @@ def classify_problem_type(user_prompt):
     result = retry_parser.parse_with_prompt(raw_output, prompt.format(input=user_prompt))
 
     # Store the result
-    message = store_data(DataInput(text=f"problem_type::{user_prompt} => {result}", metadata={"source": "test"}))
-    if message:
-        print(f"Stored result: {message}")
-    else:
-        print("Failed to store the result.")
+    # message = store_data(DataInput(text=f"problem_type::{user_prompt} => {result}", metadata={"source": "test"}))
+    # if message:
+    #     print(f"Stored result: {message}")
+    # else:
+    #     print("Failed to store the result.")
     return result
 
 

@@ -1,5 +1,4 @@
 from agents.config import *
-
 parser = PydanticOutputParser(pydantic_object=ObjectiveResponseSchema)
 
 def generate_objective(user_prompt):
@@ -7,6 +6,10 @@ def generate_objective(user_prompt):
      # if cached:
     #     return cached.split("=>")[1].strip()
 
+<<<<<<< HEAD
+=======
+    print(f"Generating objective for user prompt: {user_prompt}")
+>>>>>>> 921eade (v3)
     prompt_template_str = """
     You are an expert in Machine Learning tasked with parsing the natural language problem into machine learning and/or objective.
 
@@ -32,11 +35,19 @@ def generate_objective(user_prompt):
     result = retry_parser.parse_with_prompt(raw_output, prompt.format(input=user_prompt))
 
     # Store the result
+<<<<<<< HEAD
     message = store_data(DataInput(text=f"problem_type::{user_prompt} => {result}", metadata={"source": "test"}))
     if message:
         print(f"Stored result: {message}")
     else:
         print("Failed to store the result.")
+=======
+    # message = store_data(DataInput(text=f"problem_type::{user_prompt} => {result}", metadata={"source": "test"}))
+    # if message:
+    #     print(f"Stored result: {message}")
+    # else:
+    #     print("Failed to store the result.")
+>>>>>>> 921eade (v3)
     return result
 
 

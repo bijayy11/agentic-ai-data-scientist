@@ -36,7 +36,8 @@ class CustomLlamaAgent(ConversableAgent):
                     else:
                         result = self._function_map[func_name](func_args.get("user_prompt", ""))
                     print(f"[{self.name}] Function {func_name} result: {result}")  # Debug
-                    return result
+
+                    return {"content": result.json() if hasattr(result, 'json') else json.dumps(result)}
                 else:
                     print(f"[{self.name}] Function {func_name} not found in function_map")  # Debug
                     return {"content": f"Error: Function {func_name} not supported by {self.name}"}
