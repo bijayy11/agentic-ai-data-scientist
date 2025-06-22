@@ -5,4 +5,5 @@ problem-interpreter/components/models/all-mpnet-base-v2
 problem-interpreter/components/.env
 test.ipynb
 .env
+.gitignore
 
